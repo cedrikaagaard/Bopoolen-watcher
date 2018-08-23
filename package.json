@@ -1,0 +1,22 @@
+{
+  "name": "bopoolen-watcher",
+  "version": "1.0.0",
+  "description": "När projektet börjar bli användbart kommer en README att läggas till.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cedrikaagaard/bopoolen-watcher.git"
+  },
+  "author": "Cedrik Aagaard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cedrikaagaard/bopoolen-watcher/issues"
+  },
+  "homepage": "https://github.com/cedrikaagaard/bopoolen-watcher#readme",
+  "dependencies": {
+    "url-assembler": "^1.2.10"
+  }
+}
