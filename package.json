@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cedrikaagaard/bopoolen-watcher#readme",
   "dependencies": {
+    "colors": "^1.3.2",
     "url-assembler": "^1.2.10"
   }
 }
