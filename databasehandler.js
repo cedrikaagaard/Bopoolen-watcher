@@ -9,20 +9,63 @@ module.exports = class DatabaseHandler {
         }
     }
     
+    _addUser(resolve, reject, user) {
+        let client, db, collection;
+        
+        MongoClient.connect(this.mongodbUrl, this.mongodbOptions)
+        
+        .then(mongodbClient => {
+            client = mongodbClient;
+            db = client.db(this.dbName);
+            collection = db.collection('users');
+            collection.insertOne(user);
+            client.close();
+            resolve();
+        })
+        
+        .catch(err => {
+            if (client) client.close();
+            reject(err);
+        });
+    }
     
+    addUser(user) {
+        return new Promise((resolve, reject) => {
+            this._addUser(resolve, reject, user);
+        });
+    }
     
+    _getUsers(resolve, reject) {
+        let client;
+        let db;
+        let collection;
+        
+        MongoClient.connect(this.mongodbUrl, this.mongodbOptions)
+        
+        .then(mongodbClient => {
+            client = mongodbClient;
+            db = client.db(this.dbName);
+            collection = db.collection('users');
+            
+            return collection.find().toArray();
+        })
+        
+        .then(users => {
+            client.close();
+            resolve(users);
+        })
+        
+        .catch(err => {
+            if (client) client.close();
+            reject(err);
+        });
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    getUsers() {
+        return new Promise((resolve, reject) => {
+            this._getUsers(resolve, reject);
+        });
+    }
             
 
     _eatIds(idArray, resolve, reject) {
@@ -66,7 +109,7 @@ module.exports = class DatabaseHandler {
         .catch(err => {
             if (client) client.close();
             reject(err);
-        });
+        }); 
     }
     
     eatIds(idArray) {        
