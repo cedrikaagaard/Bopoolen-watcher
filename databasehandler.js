@@ -8,18 +8,34 @@ module.exports = class DatabaseHandler {
             useNewUrlParser: true
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            
 
-    _eatIds(idArray, resolve, reject, self) {
+    _eatIds(idArray, resolve, reject) {
         let client;
         let db;
         let collection;
         let result;
                 
-        MongoClient.connect(self.mongodbUrl, self.mongodbOptions)
+        MongoClient.connect(this.mongodbUrl, this.mongodbOptions)
         
         .then(mongodbClient => {
             client = mongodbClient;
-            db = client.db(self.dbName);
+            db = client.db(this.dbName);
             collection = db.collection('ids');
             
             return collection.find().toArray();
@@ -55,7 +71,7 @@ module.exports = class DatabaseHandler {
     
     eatIds(idArray) {        
         return new Promise((resolve, reject) => {
-            this._eatIds(idArray, resolve, reject, this);
+            this._eatIds(idArray, resolve, reject);
         });
     }
 }
